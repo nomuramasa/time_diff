@@ -24,7 +24,11 @@
   <div class='text-center my-4 h5'>日本</div>
 
   <!-- 時計 <i class='far fa-clock text-black-50'></i> -->
-  <div class='text-center'><i class='far fa-clock text-black-50'></i> {{ time_a }} 時</div>
+  <div class='text-center'><i class='far fa-clock text-black-50'></i> 
+    <span v-if='time_a >=12'>PM</span>
+    <span v-else>AM</span>
+     {{ time_a }}:00</div>
+
   <input 
     v-on:input='move("a")' 
     v-model='time_a' 
@@ -54,7 +58,10 @@
   max='25' 
   class='my-2'
   >
-  <div class='text-center'><i class='far fa-clock text-black-50'></i> {{ time_b }} 時</div>
+  <div class='text-center'><i class='far fa-clock text-black-50'></i> 
+    <span v-if='time_b >=12'>PM</span>
+    <span v-else>AM</span>
+     {{ time_b }}:00</div>
   <div class='text-center my-4 h5'>バンクーバー@カナダ</div>
   <!-- メモリ -->
   <!-- <datalist id='tickmarks'> -->
