@@ -5,12 +5,18 @@ new Vue( {
     time_b: 16 // バンクーバー時間@カナダ
   },
 	methods: {
-		move: function(){ // レンジが動いたとき
+		move: function(x){ // レンジが動いたとき
+			console.log(x)
 			// 数値型にする
 			this.time_a = Number(this.time_a);  this.time_b = Number(this.time_b) // レンジinputの値を数値に直す
 
 			// 時差を算出
-			this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
+			if(x == 'a'){ // 上が動いた場合
+				this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
+			}else if(x == 'b'){ // 下が動いた場合
+				this.time_a = this.time_b + 17 // 日本時間を、バンクーバー@カナダの時間より17時間早くする
+			}
+			
 
 			// ループ
 			if(this.time_a > 24){ // 25時になったら

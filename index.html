@@ -21,15 +21,16 @@
 
 <div id='app' class='container'>
 
-  <div class='text-center py-4'>日本</div>
+  <div class='text-center my-4 h5'>日本</div>
 
   <!-- 時計 <i class='far fa-clock text-black-50'></i> -->
   <div class='text-center'><i class='far fa-clock text-black-50'></i> {{ time_a }} 時</div>
   <input 
-    v-on:input='move' 
+    v-on:input='move("a")' 
     v-model='time_a' 
     type='range' 
     max='25' 
+    class='my-2'
   >
 
   <!-- 時間目盛り -->
@@ -47,12 +48,14 @@
   <!-- <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div> -->
 
   <input 
+  v-on:input='move("b")' 
   v-model='time_b' 
   type='range' 
   max='25' 
+  class='my-2'
   >
   <div class='text-center'><i class='far fa-clock text-black-50'></i> {{ time_b }} 時</div>
-  <div class='text-center py-4'>バンクーバー@カナダ</div>
+  <div class='text-center my-4 h5'>バンクーバー@カナダ</div>
   <!-- メモリ -->
   <!-- <datalist id='tickmarks'> -->
       <!-- <option v-for='n in 24' >{{ n }}</option> -->
