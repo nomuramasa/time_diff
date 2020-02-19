@@ -1,0 +1,29 @@
+<head>
+  <link rel='stylesheet' href='style.css'>
+</head>
+
+<h3>時差みるっ</h3>
+
+<div id="app">
+  <h4>日本</h4>
+  <p>{{ time_a }}</p>
+  <input 
+    v-on:input="move" 
+    type="range" 
+    max="24" 
+    v-model="time_a" 
+    name="time_a"
+  >
+
+  <h4>バンクーバー | カナダ</h4>
+  <p>{{ time_a + 4 }}</p>
+  <input 
+
+    type="range" 
+
+    step="6"
+  >
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src='vue.js'></script>
