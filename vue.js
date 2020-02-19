@@ -1,32 +1,15 @@
 new Vue( {
   el: '#app',
   data: {
-    time_a: 0,
-    time_b: 1
+    time_a: 12, // 日本時間
+    time_b: 10 // ベトナム時間
   },
 	methods: {
-		move: function(m){
-			if(m.target.name == 'time_a'){
-				moving_time = this.time_a // 動かしてる側
-				other_time = this.time_b // 釣られる側
-			}else{
-				moving_time = this.time_b
-				other_time = this.time_a				
-			}
-
-
-			console.log(other_time)
-			console.log(moving_time)
-			other_time = Number(moving_time) + 5
-
-			if(other_time > 24){ // 釣られる側が右へ振り切ったら
-				other_time = other_time - 24
-			}else if(other_time < 0){ // 左へ振り切ったら
-				other_time = other_time + 24
-			}
+		move: function(){ // レンジが動いたとき
+			this.time_a = Number(this.time_a) // レンジinputの値を数値に直す
+			this.time_b = Number(this.time_b)
+			this.time_b = this.time_a - 2 // ベトナム時間を、日本時間より2時間遅れにする
+			console.log(this.time_b, this.time_a) 
 		},
-		// del: function(i){ // メモ削除
-		// 	this.boxList.splice(i, 1)
-		// }
 	},
 } )

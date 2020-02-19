@@ -9,19 +9,18 @@
   <p>{{ time_a }}</p>
   <input 
     v-on:input="move" 
+    v-model="time_a" 
     type="range" 
     max="24" 
-    v-model="time_a" 
-    name="time_a"
   >
 
-  <h4>バンクーバー | カナダ</h4>
-  <p>{{ time_a + 4 }}</p>
+  <!-- <h4>バンクーバー | カナダ</h4> -->
+  <h4>ベトナム</h4>
+  <p>{{ time_b }}</p>
   <input 
-
+    v-model="time_b" 
     type="range" 
-
-    step="6"
+    max="24" 
   >
 </div>
 
