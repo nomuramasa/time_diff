@@ -1,8 +1,8 @@
 new Vue( {
   el: '#app',
   data: {
-    time_a: 12, // 日本時間
-    time_b: 10 // ベトナム時間
+    time_a: 9, // 日本時間
+    time_b: 16 // バンクーバー@カナダ時間
   },
 	methods: {
 		move: function(){ // レンジが動いたとき
@@ -10,7 +10,7 @@ new Vue( {
 			this.time_a = Number(this.time_a);  this.time_b = Number(this.time_b) // レンジinputの値を数値に直す
 
 			// 時差を算出
-			this.time_b = this.time_a - 2 // ベトナム時間を、日本時間より2時間遅れにする
+			this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
 
 			// ループ
 			if(this.time_a > 24){ // 25時になったら

@@ -1,7 +1,17 @@
 body{
-  background: #000;
-  color:#fff;
+  /* background: #000; */
+  /* color:#fff; */
 }
 input{
   width: 100%;
+  /* height: 100px; */
+}
+
+
+[type="range"] {
+  /* margin-top:25%; */
+  /* -webkit-transform:rotate(90deg);
+     -moz-transform:rotate(90deg);
+       -o-transform:rotate(90deg);
+          transform:rotate(90deg); */
 }

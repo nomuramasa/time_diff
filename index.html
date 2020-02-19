@@ -1,43 +1,55 @@
 <head>
+  <meta charset='utf8'> <!-- 文字コード -->
+  <meta name='viewport' content='width=device-width'> <!-- スマホ対応 -->
+  
+  <!--Bootstrap４に必要なCSSとJavaScriptを読み込み-->
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
+  
+  <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>
+  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js' integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy' crossorigin='anonymous'></script>
+  
   <link rel='stylesheet' href='style.css'>
 </head>
+<div class='container' id='app'>
+  <h4>時差目盛りっ</h4>
 
-<h3>時差みるっ</h3>
+  <h5>日本 | {{ time_a }} 時</h5>
 
-<div id='app'>
-  <h4>日本</h4>
-  <p>{{ time_a }}</p>
+
   <input 
     v-on:input='move' 
     v-model='time_a' 
     type='range' 
     max='25' 
-    list='tickmarks'
   >
 
-  <!-- <h4>バンクーバー | カナダ</h4> -->
-  <h4>ベトナム</h4>
-  <p>{{ time_b }}</p>
+  <!-- 時間目盛り -->
+  <div class='row'><span v-for='t in 6' class='col-2 text-center'>{{ t*4 }}</span></div>
+  
+  <!-- 太陽と月のイラスト -->
+  <div class='row'>
+    <span class='col-3 text-center bg-dark'><img src='img/moon_star.png' style='width:50%'></span>
+    <span class='col-6 text-center bg-primary'><img src='img/sun.png' style='width:25%'></span>
+    <span class='col-3 text-center bg-dark'><img src='img/moon_star.png' style='width:50%'></span>
+  </div>
+  
+  <!-- 時間目盛り -->
+  <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div>
+
   <input 
-    v-model='time_b' 
-    type='range' 
-    max='25' 
-    list='tickmarks'
+  v-model='time_b' 
+  type='range' 
+  max='25' 
   >
+  <h5>バンクーバー@カナダ | {{ time_b }} 時</h5>
 
-
-<!-- メモリ -->
-<datalist id='tickmarks'>
-    <!-- <option v-for='n in 24' >{{ n }}</option> -->
-</datalist>
-
-
-
+  <!-- メモリ -->
+  <!-- <datalist id='tickmarks'> -->
+      <!-- <option v-for='n in 24' >{{ n }}</option> -->
+  <!-- </datalist> -->
 
 </div>
-
-
-
 
 <script src='https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js'></script>
 <script src='vue.js'></script>
