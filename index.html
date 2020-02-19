@@ -4,25 +4,40 @@
 
 <h3>時差みるっ</h3>
 
-<div id="app">
+<div id='app'>
   <h4>日本</h4>
   <p>{{ time_a }}</p>
   <input 
-    v-on:input="move" 
-    v-model="time_a" 
-    type="range" 
-    max="24" 
+    v-on:input='move' 
+    v-model='time_a' 
+    type='range' 
+    max='25' 
+    list='tickmarks'
   >
 
   <!-- <h4>バンクーバー | カナダ</h4> -->
   <h4>ベトナム</h4>
   <p>{{ time_b }}</p>
   <input 
-    v-model="time_b" 
-    type="range" 
-    max="24" 
+    v-model='time_b' 
+    type='range' 
+    max='25' 
+    list='tickmarks'
   >
+
+
+<!-- メモリ -->
+<datalist id='tickmarks'>
+    <!-- <option v-for='n in 24' >{{ n }}</option> -->
+</datalist>
+
+
+
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+
+
+<script src='https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js'></script>
 <script src='vue.js'></script>
