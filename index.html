@@ -11,12 +11,16 @@
   
   <link rel='stylesheet' href='style.css'>
 </head>
-<div class='container' id='app'>
-  <h4>時差目盛りっ</h4>
 
-  <h5>日本 | {{ time_a }} 時</h5>
+<nav class="navbar text-light bg-dark">
+  <h4 class='m-auto'>時差スライダー</h4>
+</nav>
 
+<div id='app' class='container'>
 
+  <div class='text-center'>日本</div>
+
+  <div class='text-center'>{{ time_a }} 時</div>
   <input 
     v-on:input='move' 
     v-model='time_a' 
@@ -35,15 +39,16 @@
   </div>
   
   <!-- 時間目盛り -->
-  <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div>
+  <div class='row'><span v-for='t in 6' class='col-2 text-center'>{{ t*4 }}</span></div>
+  <!-- <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div> -->
 
   <input 
   v-model='time_b' 
   type='range' 
   max='25' 
   >
-  <h5>バンクーバー@カナダ | {{ time_b }} 時</h5>
-
+  <div class='text-center'>{{ time_b }} 時</div>
+  <div class='text-center'>バンクーバー@カナダ</div>
   <!-- メモリ -->
   <!-- <datalist id='tickmarks'> -->
       <!-- <option v-for='n in 24' >{{ n }}</option> -->

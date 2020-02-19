@@ -2,7 +2,7 @@ new Vue( {
   el: '#app',
   data: {
     time_a: 9, // 日本時間
-    time_b: 16 // バンクーバー@カナダ時間
+    time_b: 16 // バンクーバー時間@カナダ
   },
 	methods: {
 		move: function(){ // レンジが動いたとき
