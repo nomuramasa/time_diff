@@ -6,6 +6,12 @@ input{
   width: 100%;
   /* height: 100px; */
 }
+.bg-morning{
+  background: #bdeaff
+}
+.bg-night{
+  background: #053080
+}
 
 
 [type="range"] {
