@@ -21,54 +21,69 @@
 
 <div id='app' class='container'>
 
-  <div class='text-center my-4 h5'>日本</div>
+  <div class='text-center my-3 h5'>日本</div>
 
-  <!-- 時計 <i class='far fa-clock text-black-50'></i> -->
-  <div class='text-center'><i class='far fa-clock text-black-50'></i> 
+  <!-- 時間 -->
+  <div class='text-center'>
+    <i class='far fa-clock text-black-50'></i> 
     <span v-if='time_a >=12'>PM</span>
     <span v-else>AM</span>
      {{ time_a }}:00
   </div>
 
+  <!-- 目盛りの数字 -->
+  <div class='row mx-0 tick_number'><span v-for='t in 25' class='col-05 text-center'>{{ t-1 }}</span></div>
+
+  <!-- レンジ -->
   <input 
     v-on:input='move("a")' 
     v-model='time_a' 
     type='range' 
     max='24' 
-    class='my-2'
+    list='tickmarks'
   >
 
-  <!-- 時間目盛り -->
-  <div class='row'><span v-for='t in 6' class='col-2 text-center'>{{ t*4 }}</span></div>
   
-  <!-- 太陽と月のイラスト -->
+  <!--------------------------------- 太陽と月のイラスト --------------------------------->
   <div class='row'>
     <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
     <span class='col-6 text-center bg-morning'><img src='img/sun.png' style='width:25%'></span>
     <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
   </div>
   
-  <!-- 時間目盛り -->
-  <div class='row'><span v-for='t in 6' class='col-2 text-center'>{{ t*4 }}</span></div>
+  <!-- 隙間 -->
+  <div class='my-2'></div>
+
+  <!-- 時間 -->
+  <div class='text-center'>
+    <i class='far fa-clock text-black-50'></i> 
+    <span v-if='time_b >=12'>PM</span>
+    <span v-else>AM</span>
+     {{ time_b }}:00
+  </div>
+
+  <!-- 目盛りの数字 -->
+  <div class='row mx-0 tick_number'><span v-for='t in 25' class='col-05 text-center'>{{ t-1 }}</span></div>
   <!-- <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div> -->
 
+  <!-- レンジ -->
   <input 
   v-on:input='move("b")' 
   v-model='time_b' 
   type='range' 
   max='24' 
-  class='my-2'
+  list='tickmarks'
   >
-  <div class='text-center'><i class='far fa-clock text-black-50'></i> 
-    <span v-if='time_b >=12'>PM</span>
-    <span v-else>AM</span>
-     {{ time_b }}:00
-  </div>
-  <div class='text-center my-4 h5'>バンクーバー@カナダ</div>
-  <!-- メモリ -->
-  <!-- <datalist id='tickmarks'> -->
-      <!-- <option v-for='n in 24' >{{ n }}</option> -->
-  <!-- </datalist> -->
+
+
+  <div class='text-center my-3 h5'>バンクーバー@カナダ</div>
+
+
+
+  <!-- 目盛り -->
+  <datalist id='tickmarks'>
+      <option v-for='n in 25'>{{ n-1 }}</option>
+  </datalist>
 
 </div>
 

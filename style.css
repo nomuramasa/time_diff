@@ -16,7 +16,17 @@ input{
   background: #053080
 }
 
-
+.col-05{
+  flex: 0 0 4%;
+  max-width: 4%;
+  /* flex: 0 0 4.1666666%; */
+  /* max-width: 4.1666666%; */
+}
+.tick_number{
+  font-size:7px; 
+  border:solid 0px #000; 
+  border-radius: 50px;
+}
 [type="range"] {
   /* margin-top:25%; */
   /* -webkit-transform:rotate(90deg);
