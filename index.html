@@ -21,14 +21,19 @@
 
 <div id='app' class='container'>
 
+  <!-- 国名 -->
   <div class='text-center my-3 h5'>日本</div>
 
-  <!-- 時間 -->
-  <div class='text-center'>
-    <i class='far fa-clock text-black-50'></i> 
-    <span v-if='time_a >=12'>PM</span>
-    <span v-else>AM</span>
-     {{ time_a }}:00
+  <!-- 日付と時刻 -->
+  <div class='text-center my-1'>
+    <i class='fa fa-calendar-day text-black-50'></i> 
+     {{ month_a }}/{{ date_a }} ({{ day_a }})　
+    <strong>
+      <i class='far fa-clock'></i> 
+      <span v-if='time_a >=12'>PM</span>
+      <span v-else>AM</span>
+      {{ time_a }}:00
+    </strong>
   </div>
 
   <!-- 目盛りの数字 -->
@@ -45,21 +50,23 @@
 
   
   <!--------------------------------- 太陽と月のイラスト --------------------------------->
-  <div class='row'>
+  <div class='row my-3'>
     <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
     <span class='col-6 text-center bg-morning'><img src='img/sun.png' style='width:25%'></span>
     <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
   </div>
   
-  <!-- 隙間 -->
-  <div class='my-2'></div>
 
-  <!-- 時間 -->
-  <div class='text-center'>
-    <i class='far fa-clock text-black-50'></i> 
-    <span v-if='time_b >=12'>PM</span>
-    <span v-else>AM</span>
-     {{ time_b }}:00
+  <!-- 日付と時刻 -->
+  <div class='text-center my-1'>
+    <i class='fa fa-calendar-day text-black-50'></i> 
+     {{ month_b }}/{{ date_b }} ({{ day_b }})　
+    <strong>
+      <i class='far fa-clock text-black-50'></i> 
+      <span v-if='time_b >=12'>PM</span>
+      <span v-else>AM</span>
+      {{ time_b }}:00
+    </strong>
   </div>
 
   <!-- 目盛りの数字 -->
@@ -75,7 +82,7 @@
   list='tickmarks'
   >
 
-
+  <!-- 国名 -->
   <div class='text-center my-3 h5'>バンクーバー@カナダ</div>
 
 
@@ -85,7 +92,27 @@
       <option v-for='n in 25'>{{ n-1 }}</option>
   </datalist>
 
+
+<hr>
+<!-- <span class='my-3'></span> -->
+
+
+<!-- 時間の戻る進むボタン -->
+<div class='text-center'>
+  <a class='btn btn-secondary text-white' v-on:click='prev()'>
+    <span>&#9664;</span> 戻る
+  </a>
+  <span class='mx-5'></span> 
+  <a class='btn btn-secondary text-white' v-on:click='forw()'>
+    進む <span>&#9654;</span> 
+  </a>
 </div>
 
+
+
+</div>
+
+
+<!-- Vue -->
 <script src='https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js'></script>
 <script src='vue.js'></script>
