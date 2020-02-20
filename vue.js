@@ -19,15 +19,15 @@ new Vue( {
 			
 
 			// ループ
-			if(this.time_a > 24){ // 25時になったら
+			if(this.time_a > 23){ // 25時になったら
 				this.time_a = this.time_a - 24 // 1時にする
-			}else if(this.time_a < 1){ // 0時になったら
+			}else if(this.time_a < 0){ // 0時になったら
 				this.time_a = this.time_a + 24 // 24時にする
 			}
 			// bも
-			if(this.time_b > 24){ // 25時になったら
+			if(this.time_b > 23){ // 25時になったら
 				this.time_b = this.time_b - 24 // 1時にする
-			}else if(this.time_b < 1){ // 0時になったら
+			}else if(this.time_b < 0){ // 0時になったら
 				this.time_b = this.time_b + 24 // 24時にする
 			}
 		},

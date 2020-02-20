@@ -27,13 +27,14 @@
   <div class='text-center'><i class='far fa-clock text-black-50'></i> 
     <span v-if='time_a >=12'>PM</span>
     <span v-else>AM</span>
-     {{ time_a }}:00</div>
+     {{ time_a }}:00
+  </div>
 
   <input 
     v-on:input='move("a")' 
     v-model='time_a' 
     type='range' 
-    max='25' 
+    max='24' 
     class='my-2'
   >
 
@@ -55,13 +56,14 @@
   v-on:input='move("b")' 
   v-model='time_b' 
   type='range' 
-  max='25' 
+  max='24' 
   class='my-2'
   >
   <div class='text-center'><i class='far fa-clock text-black-50'></i> 
     <span v-if='time_b >=12'>PM</span>
     <span v-else>AM</span>
-     {{ time_b }}:00</div>
+     {{ time_b }}:00
+  </div>
   <div class='text-center my-4 h5'>バンクーバー@カナダ</div>
   <!-- メモリ -->
   <!-- <datalist id='tickmarks'> -->
