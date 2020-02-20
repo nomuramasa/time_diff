@@ -26,10 +26,10 @@
 
   <!-- 日付と時刻 -->
   <div class='text-center my-1'>
-    <i class='fa fa-calendar-day text-black-50'></i> 
-     {{ month_a }}/{{ date_a }} ({{ day_a }})　
+    <!-- <i class='fa fa-calendar-day text-black-50'></i>  -->
+    <!-- {{ month_a }}/{{ date_a }} ({{ day_a }})　 -->
+    <i class='far fa-clock text-secondary'></i> 
     <strong>
-      <i class='far fa-clock'></i> 
       <span v-if='time_a >=12'>PM</span>
       <span v-else>AM</span>
       {{ time_a }}:00
@@ -59,14 +59,15 @@
 
   <!-- 日付と時刻 -->
   <div class='text-center my-1'>
-    <i class='fa fa-calendar-day text-black-50'></i> 
-     {{ month_b }}/{{ date_b }} ({{ day_b }})　
+    <!-- <i class='fa fa-calendar-day text-black-50'></i>  -->
+    <!-- {{ month_b }}/{{ date_b }} ({{ day_b }})　 -->
+    <i class='far fa-clock text-secondary'></i> 
     <strong>
-      <i class='far fa-clock text-black-50'></i> 
       <span v-if='time_b >=12'>PM</span>
       <span v-else>AM</span>
       {{ time_b }}:00
     </strong>
+    <span v-if='time_b >= 24 - 17' class='text-secondary'>（前日）</span>
   </div>
 
   <!-- 目盛りの数字 -->
@@ -97,13 +98,19 @@
 <!-- <span class='my-3'></span> -->
 
 
+<!-- 現在時刻 -->
+<div class='text-center'>
+  <a class='btn btn-secondary text-light rounded-circle p-3' style='height:55px; width:55px' v-on:click='now()'>今</a>
+</div>
+
+<div class='my-2'></div>
+
 <!-- 時間の戻る進むボタン -->
 <div class='text-center'>
   <a class='triangle text-black-50' v-on:click='prev()'>&#9664;</a>
-  <span class='mx-5'></span> 
+  <span class='mx-3'></span> 
   <a class='triangle text-black-50' v-on:click='forw()'>&#9654;</a>
 </div>
-
 
 
 </div>

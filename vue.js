@@ -24,7 +24,6 @@ new Vue( {
 				this.time_a = this.time_b + 17 // 日本時間を、バンクーバー@カナダの時間より17時間早くする
 			}
 			
-
 			// 左右ループ
 			if(this.time_a > 23){ // 25時になったら
 				this.time_a = this.time_a - 24 // 1時にする
@@ -38,7 +37,27 @@ new Vue( {
 				this.time_b = this.time_b + 24 // 24時にする
 			}
 		},
+		now: function(){
+			const today = new Date()
+			this.time_a = today.getHours()
 
+			// 時差を算出
+				this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
+			
+			// 左右ループ
+			if(this.time_a > 23){ // 25時になったら
+				this.time_a = this.time_a - 24 // 1時にする
+			}else if(this.time_a < 0){ // 0時になったら
+				this.time_a = this.time_a + 24 // 24時にする
+			}
+			// bも
+			if(this.time_b > 23){ // 25時になったら
+				this.time_b = this.time_b - 24 // 1時にする
+			}else if(this.time_b < 0){ // 0時になったら
+				this.time_b = this.time_b + 24 // 24時にする
+			}
+
+		},
 		forw: function(){ // 進む
 			this.time_a = this.time_a + 1
 			this.time_b = this.time_b + 1
