@@ -38,9 +38,27 @@ new Vue( {
 				this.time_b = this.time_b + 24 // 24時にする
 			}
 		},
+
 		forw: function(){ // 進む
 			this.time_a = this.time_a + 1
 			this.time_b = this.time_b + 1
+			// 左右ループ
+			if(this.time_a > 23){ // 25時になったら
+				this.time_a = this.time_a - 24 // 1時にする
+			}else if(this.time_a < 0){ // 0時になったら
+				this.time_a = this.time_a + 24 // 24時にする
+			}
+			// bも
+			if(this.time_b > 23){ // 25時になったら
+				this.time_b = this.time_b - 24 // 1時にする
+			}else if(this.time_b < 0){ // 0時になったら
+				this.time_b = this.time_b + 24 // 24時にする
+			}
+		},
+
+		prev: function(){ // 戻る
+			this.time_a = this.time_a - 1
+			this.time_b = this.time_b - 1
 			// 左右ループ
 			if(this.time_a > 23){ // 25時になったら
 				this.time_a = this.time_a - 24 // 1時にする
