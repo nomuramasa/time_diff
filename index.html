@@ -1,7 +1,7 @@
 <head>
   <meta charset='utf8'> <!-- 文字コード -->
   <meta name='viewport' content='width=device-width'> <!-- スマホ対応 -->
-  
+  <title>時差目盛り</title>
   <!--Bootstrap４に必要なCSSとJavaScriptを読み込み-->
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
   
@@ -16,7 +16,7 @@
 </head>
 
 <nav class="navbar text-light bg-dark">
-  <h4 class='m-auto'>時差スライダー</h4>
+  <h4 class='m-auto'>時差目盛り</h4>
 </nav>
 
 <div id='app' class='container'>
@@ -93,24 +93,23 @@
       <option v-for='n in 25'>{{ n-1 }}</option>
   </datalist>
 
-
 <hr>
-<!-- <span class='my-3'></span> -->
+<div class='my-1'></div>
 
+  <!-- 現在時刻 -->
+  <div class='text-center'>
+    <a class='btn btn-secondary text-light rounded-circle p-2' style='height:40px; width:40px' v-on:click='now()'>今</a>
+  </div>
 
-<!-- 現在時刻 -->
-<div class='text-center'>
-  <a class='btn btn-secondary text-light rounded-circle p-3' style='height:55px; width:55px' v-on:click='now()'>今</a>
-</div>
+  <div class='my-2'></div>
 
-<div class='my-2'></div>
+  <!-- 時間の戻る進むボタン -->
+  <div class='text-center'>
+    <a class='triangle text-black-50' v-on:click='prev()'>&#9664;</a>
+    <span class='mx-3'></span> 
+    <a class='triangle text-black-50' v-on:click='forw()'>&#9654;</a>
+  </div>
 
-<!-- 時間の戻る進むボタン -->
-<div class='text-center'>
-  <a class='triangle text-black-50' v-on:click='prev()'>&#9664;</a>
-  <span class='mx-3'></span> 
-  <a class='triangle text-black-50' v-on:click='forw()'>&#9654;</a>
-</div>
 
 
 </div>
