@@ -1,7 +1,9 @@
+<!DOCTYPE html>
+<html lang="ja">
 <head>
   <meta charset='utf8'> <!-- 文字コード -->
-  <meta name='viewport' content='width=device-width'> <!-- スマホ対応 -->
   <title>時差目盛り</title>
+  <meta name='viewport' content='width=device-width'> <!-- スマホ対応 -->
   <!--Bootstrap４に必要なCSSとJavaScriptを読み込み-->
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
   
@@ -15,107 +17,110 @@
   <link rel='stylesheet' href='style.css'>
   <link rel='icon' href='img/favicon.ico'>
 </head>
+<body>
+  <nav class="navbar text-light bg-dark">
+    <h4 class='m-auto'>時差目盛り</h4>
+  </nav>
 
-<nav class="navbar text-light bg-dark">
-  <h4 class='m-auto'>時差目盛り</h4>
-</nav>
+  <div id='app' class='container'>
 
-<div id='app' class='container'>
+    <!-- 国名 -->
+    <div class='text-center my-3 h5'>日本</div>
 
-  <!-- 国名 -->
-  <div class='text-center my-3 h5'>日本</div>
+    <!-- 日付と時刻 -->
+    <div class='text-center my-1'>
+      <!-- <i class='fa fa-calendar-day text-black-50'></i>  -->
+      <!-- {{ monthJapan }}/{{ dateJapan }} ({{ dayJapan }})　 -->
+      <i class='far fa-clock text-secondary'></i> 
+      <strong>
+        <span v-if='timeJapan >=12'>PM</span>
+        <span v-else>AM</span>
+        {{ timeJapan }}:00
+      </strong>
+    </div>
 
-  <!-- 日付と時刻 -->
-  <div class='text-center my-1'>
-    <!-- <i class='fa fa-calendar-day text-black-50'></i>  -->
-    <!-- {{ month_a }}/{{ date_a }} ({{ day_a }})　 -->
-    <i class='far fa-clock text-secondary'></i> 
-    <strong>
-      <span v-if='time_a >=12'>PM</span>
-      <span v-else>AM</span>
-      {{ time_a }}:00
-    </strong>
-  </div>
+    <!-- 目盛りの数字 -->
+    <div class='row mx-0 tick_number'><span v-for='t in 25' class='col-05 text-center'>{{ t-1 }}</span></div>
 
-  <!-- 目盛りの数字 -->
-  <div class='row mx-0 tick_number'><span v-for='t in 25' class='col-05 text-center'>{{ t-1 }}</span></div>
+    <!-- レンジ -->
+    <input 
+      v-on:input='move("japan")' 
+      v-model='timeJapan' 
+      type='range' 
+      max='24' 
+      list='tickmarks'
+    >
 
-  <!-- レンジ -->
-  <input 
-    v-on:input='move("a")' 
-    v-model='time_a' 
+    
+    <!--------------------------------- 太陽と月のイラスト --------------------------------->
+    <div class='row my-3'>
+      <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
+      <span class='col-6 text-center bg-morning'><img src='img/sun.png' style='width:25%'></span>
+      <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
+    </div>
+    
+
+    <!-- 日付と時刻 -->
+    <div class='text-center my-1'>
+      <!-- <i class='fa fa-calendar-day text-black-50'></i>  -->
+      <!-- {{ monthCanada }}/{{ dateCanada }} ({{ dayCanada }})　 -->
+      <i class='far fa-clock text-secondary'></i> 
+      <strong>
+        <span v-if='timeCanada >=12'>PM</span>
+        <span v-else>AM</span>
+        {{ timeCanada }}:00
+      </strong>
+      <span v-if='timeCanada >= 24 - 17' class='text-secondary'>（前日）</span>
+    </div>
+
+    <!-- 目盛りの数字 -->
+    <div class='row mx-0 tick_number'><span v-for='t in 25' class='col-05 text-center'>{{ t-1 }}</span></div>
+    <!-- <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div> -->
+
+    <!-- レンジ -->
+    <input 
+    v-on:input='move("canada")' 
+    v-model='timeCanada' 
     type='range' 
     max='24' 
     list='tickmarks'
-  >
+    >
 
-  
-  <!--------------------------------- 太陽と月のイラスト --------------------------------->
-  <div class='row my-3'>
-    <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
-    <span class='col-6 text-center bg-morning'><img src='img/sun.png' style='width:25%'></span>
-    <span class='col-3 text-center bg-night'><img src='img/moon_star.png' style='width:50%'></span>
+    <!-- 国名 -->
+    <div class='text-center my-3 h5'>バンクーバー@カナダ</div>
+
+
+
+    <!-- 目盛り -->
+    <datalist id='tickmarks'>
+        <option v-for='n in 25'>{{ n-1 }}</option>
+    </datalist>
+
+  <hr>
+  <div class='my-1'></div>
+
+    <!-- 現在時刻 -->
+    <div class='text-center'>
+      <a class='btn btn-secondary text-light rounded-circle p-2' style='height:40px; width:40px' v-on:click='now()'>今</a>
+    </div>
+
+    <div class='my-2'></div>
+
+    <!-- 時間の戻る進むボタン -->
+    <div class='text-center'>
+      <a class='triangle text-black-50' v-on:click='prev()'>&#9664;</a>
+      <span class='mx-3'></span> 
+      <a class='triangle text-black-50' v-on:click='forw()'>&#9654;</a>
+    </div>
+
+
+
   </div>
-  
-
-  <!-- 日付と時刻 -->
-  <div class='text-center my-1'>
-    <!-- <i class='fa fa-calendar-day text-black-50'></i>  -->
-    <!-- {{ month_b }}/{{ date_b }} ({{ day_b }})　 -->
-    <i class='far fa-clock text-secondary'></i> 
-    <strong>
-      <span v-if='time_b >=12'>PM</span>
-      <span v-else>AM</span>
-      {{ time_b }}:00
-    </strong>
-    <span v-if='time_b >= 24 - 17' class='text-secondary'>（前日）</span>
-  </div>
-
-  <!-- 目盛りの数字 -->
-  <div class='row mx-0 tick_number'><span v-for='t in 25' class='col-05 text-center'>{{ t-1 }}</span></div>
-  <!-- <div class='row'><span v-for='t in 12' class='col-1'>{{ t*2 }}</span></div> -->
-
-  <!-- レンジ -->
-  <input 
-  v-on:input='move("b")' 
-  v-model='time_b' 
-  type='range' 
-  max='24' 
-  list='tickmarks'
-  >
-
-  <!-- 国名 -->
-  <div class='text-center my-3 h5'>バンクーバー@カナダ</div>
-
-
-
-  <!-- 目盛り -->
-  <datalist id='tickmarks'>
-      <option v-for='n in 25'>{{ n-1 }}</option>
-  </datalist>
-
-<hr>
-<div class='my-1'></div>
-
-  <!-- 現在時刻 -->
-  <div class='text-center'>
-    <a class='btn btn-secondary text-light rounded-circle p-2' style='height:40px; width:40px' v-on:click='now()'>今</a>
-  </div>
-
-  <div class='my-2'></div>
-
-  <!-- 時間の戻る進むボタン -->
-  <div class='text-center'>
-    <a class='triangle text-black-50' v-on:click='prev()'>&#9664;</a>
-    <span class='mx-3'></span> 
-    <a class='triangle text-black-50' v-on:click='forw()'>&#9654;</a>
-  </div>
-
-
-
-</div>
 
 
 <!-- Vue -->
 <script src='https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js'></script>
 <script src='vue.js'></script>
+
+</body>
+</html>

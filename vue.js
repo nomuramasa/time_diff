@@ -1,116 +1,76 @@
 new Vue( {
-  el: '#app',
+	el: '#app',
+	
   data: {
-    month_a: 2, // 日本月
-    date_a: 20, // 日本日付
-    day_a: '木', // 日本曜日
-		time_a: 9, // 日本時間
+		timeDiff: -17, // 時差 
+		timeJapan: new Date().getHours(), // 日本時間（現在時刻）
+		timeCanada: new Date().getHours() -17, // カナダ時間（日本の現在時刻と時差から計算）
+    // monthJapan: 2, // 日本月 // dateJapan: 20, // 日本日付 // dayJapan: '木', // 日本曜日
+    // monthCanada: 2, // カナダ月 // dateCanada: 20, // カナダ日付 // dayCanada: '木', // カナダ曜日
+	},
 
-    month_b: 2, // カナダ月
-    date_b: 20, // カナダ日付
-    day_b: '木', // カナダ曜日
-    time_b: 16 // カナダ時間
-  },
+	// computed: {
+	// 	timeCanada: function() { // カナダ時間
+	// 		return this.timeJapan + this.timeDiff // 日本時間と時差から計算
+	// 	}
+	// },
+
 	methods: {
-		move: function(x){ // レンジが動いたとき
-			console.log(x)
+
+		loop: function () { // 24時間の目盛り左右ループ
+			// 日本
+			if(this.timeJapan > 23){ // 25時になったら
+				this.timeJapan = this.timeJapan - 24 // 1時にする
+			}else if(this.timeJapan < 0){ // 0時になったら
+				this.timeJapan = this.timeJapan + 24 // 24時にする
+			}
+			// カナダ
+			if(this.timeCanada > 23){ // 25時になったら
+				this.timeCanada = this.timeCanada - 24 // 1時にする
+			}else if(this.timeCanada < 0){ // 0時になったら
+				this.timeCanada = this.timeCanada + 24 // 24時にする
+			}
+		},
+			
+		
+		move: function (movingCountry) { // レンジが動いたとき
+
 			// 数値型にする
-			this.time_a = Number(this.time_a);  this.time_b = Number(this.time_b) // レンジinputの値を数値に直す
+			this.timeJapan = Number(this.timeJapan);  this.timeCanada = Number(this.timeCanada) // レンジinputの値を数値に直す
 
 			// 時差を算出
-			if(x == 'a'){ // 上が動いた場合
-				this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
-			}else if(x == 'b'){ // 下が動いた場合
-				this.time_a = this.time_b + 17 // 日本時間を、バンクーバー@カナダの時間より17時間早くする
-			}
-			
-			// 左右ループ
-			if(this.time_a > 23){ // 25時になったら
-				this.time_a = this.time_a - 24 // 1時にする
-			}else if(this.time_a < 0){ // 0時になったら
-				this.time_a = this.time_a + 24 // 24時にする
-			}
-			// bも
-			if(this.time_b > 23){ // 25時になったら
-				this.time_b = this.time_b - 24 // 1時にする
-			}else if(this.time_b < 0){ // 0時になったら
-				this.time_b = this.time_b + 24 // 24時にする
-			}
-		},
-		now: function(){
-			const today = new Date()
-			this.time_a = today.getHours()
-
-			// 時差を算出
-				this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
-			
-			// 左右ループ
-			if(this.time_a > 23){ // 25時になったら
-				this.time_a = this.time_a - 24 // 1時にする
-			}else if(this.time_a < 0){ // 0時になったら
-				this.time_a = this.time_a + 24 // 24時にする
-			}
-			// bも
-			if(this.time_b > 23){ // 25時になったら
-				this.time_b = this.time_b - 24 // 1時にする
-			}else if(this.time_b < 0){ // 0時になったら
-				this.time_b = this.time_b + 24 // 24時にする
+			if(movingCountry == 'japan'){ // 日本の目盛りが動いた時
+				this.timeCanada = this.timeJapan + this.timeDiff // カナダの時間を、日本時間より17時間遅れにする
+			}else if(movingCountry == 'canada'){ // カナダの目盛りが動いた場合
+				this.timeJapan = this.timeCanada - this.timeDiff // 日本時間を、カナダの時間より17時間早くする
 			}
 
+			// 左右ループ調整
+			this.loop()
 		},
+
+
+		now: function(){ // 現在時刻
+			this.timeJapan = new Date().getHours(), // 日本時間（現在時刻）
+			this.timeCanada = new Date().getHours() -17, // カナダ時間（日本の現在時刻と時差から計算）
+			this.loop()	// 左右ループ調整
+		},
+		
+		
 		forw: function(){ // 進む
-			this.time_a = this.time_a + 1
-			this.time_b = this.time_b + 1
-			// 左右ループ
-			if(this.time_a > 23){ // 25時になったら
-				this.time_a = this.time_a - 24 // 1時にする
-			}else if(this.time_a < 0){ // 0時になったら
-				this.time_a = this.time_a + 24 // 24時にする
-			}
-			// bも
-			if(this.time_b > 23){ // 25時になったら
-				this.time_b = this.time_b - 24 // 1時にする
-			}else if(this.time_b < 0){ // 0時になったら
-				this.time_b = this.time_b + 24 // 24時にする
-			}
+			this.timeJapan = this.timeJapan + 1
+			this.timeCanada = this.timeCanada + 1
+			this.loop()	// 左右ループ調整
 		},
 
 		prev: function(){ // 戻る
-			this.time_a = this.time_a - 1
-			this.time_b = this.time_b - 1
-			// 左右ループ
-			if(this.time_a > 23){ // 25時になったら
-				this.time_a = this.time_a - 24 // 1時にする
-			}else if(this.time_a < 0){ // 0時になったら
-				this.time_a = this.time_a + 24 // 24時にする
-			}
-			// bも
-			if(this.time_b > 23){ // 25時になったら
-				this.time_b = this.time_b - 24 // 1時にする
-			}else if(this.time_b < 0){ // 0時になったら
-				this.time_b = this.time_b + 24 // 24時にする
-			}
-		},
+			this.timeJapan = this.timeJapan - 1
+			this.timeCanada = this.timeCanada - 1
+			this.loop()	// 左右ループ調整
+		}
+
 	},
-	created() {
-		const today = new Date()
-		this.time_a = today.getHours()
-
-		// 時差を算出
-			this.time_b = this.time_a - 17 // バンクーバー@カナダの時間を、日本時間より17時間遅れにする
-		
-		// 左右ループ
-		if(this.time_a > 23){ // 25時になったら
-			this.time_a = this.time_a - 24 // 1時にする
-		}else if(this.time_a < 0){ // 0時になったら
-			this.time_a = this.time_a + 24 // 24時にする
-		}
-		// bも
-		if(this.time_b > 23){ // 25時になったら
-			this.time_b = this.time_b - 24 // 1時にする
-		}else if(this.time_b < 0){ // 0時になったら
-			this.time_b = this.time_b + 24 // 24時にする
-		}
-
+  created: function () { // 最初に
+    this.loop() // 左右ループ調整
 	},
 } )
