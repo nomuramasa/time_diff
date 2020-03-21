@@ -1,7 +1,7 @@
 # 時差メモリ
 
 <!-- 画像 -->
-<div align="center"><img src='screen.png'></div>
+<div align="center"><img src='screen_.png'></div>
 
 ## 概要
 海外との時差を直感的に見れるツール。  
